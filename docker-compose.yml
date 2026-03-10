@@ -1,0 +1,40 @@
+services:
+  cognee-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cognee-mcp-fastembed
+    container_name: cognee-mcp
+    restart: unless-stopped
+    expose:
+      - "8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TRANSPORT_MODE: "http"
+      PYTHONUNBUFFERED: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      LLM_API_KEY: "pluton"
+      LLM_PROVIDER: "custom"
+      LLM_MODEL: "openai/default"
+      LLM_API_BASE: "https://litellm.maarin.dedyn.io/v1"
+      EMBEDDING_PROVIDER: "fastembed"
+      EMBEDDING_MODEL: "sentence-transformers/all-MiniLM-L6-v2"
+      EMBEDDING_DIMENSIONS: "384"
+    volumes:
+      - cognee_data:/app/.venv/lib/python3.12/site-packages/cognee/.cognee_system
+    networks:
+      - cognee_internal
+      - n8n_n8n_network
+    labels:
+      caddy: cognee.maarin.dedyn.io
+      caddy.reverse_proxy: "{{upstreams 8000}}"
+      caddy.reverse_proxy.header_up: "Host localhost:8000"
+      caddy.reverse_proxy.flush_interval: "-1"
+volumes:
+  cognee_data:
+networks:
+  cognee_internal:
+    driver: bridge
+  n8n_n8n_network:
+    external: true
