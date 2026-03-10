@@ -16,10 +16,9 @@ services:
       PYTHONUNBUFFERED: "1"
       TOKENIZERS_PARALLELISM: "false"
       LLM_API_KEY: "pluton"
-      LLM_PROVIDER: "custom"
-      LLM_MODEL: "azure/ai"
+      LLM_PROVIDER: "openai"
+      LLM_MODEL: "ai"
       LLM_ENDPOINT: "https://litellm.maarin.dedyn.io/v1"
-      LLM_API_VERSION: "2024-12-01-preview"
       EMBEDDING_PROVIDER: "fastembed"
       EMBEDDING_MODEL: "sentence-transformers/all-MiniLM-L6-v2"
       EMBEDDING_DIMENSIONS: "384"
@@ -33,8 +32,10 @@ services:
       caddy.reverse_proxy: "{{upstreams 8000}}"
       caddy.reverse_proxy.header_up: "Host localhost:8000"
       caddy.reverse_proxy.flush_interval: "-1"
+
 volumes:
   cognee_data:
+
 networks:
   cognee_internal:
     driver: bridge
