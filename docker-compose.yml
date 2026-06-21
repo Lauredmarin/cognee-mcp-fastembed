@@ -1,5 +1,4 @@
 services:
-  user: root
   cognee-mcp:
     build:
       context: .
@@ -7,6 +6,7 @@ services:
     image: cognee-mcp-fastembed
     container_name: cognee-mcp
     restart: unless-stopped
+    user: root
     expose:
       - "8000"
     extra_hosts:
