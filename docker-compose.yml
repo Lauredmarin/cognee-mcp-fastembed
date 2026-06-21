@@ -12,6 +12,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
+      EXTRAS: "fastembed"
       TRANSPORT_MODE: "http"
       LOG_LEVEL: "INFO"
       PYTHONUNBUFFERED: "1"
