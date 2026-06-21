@@ -1,6 +1,6 @@
 services:
-  cognee-mcp:
   user: root
+  cognee-mcp:
     build:
       context: .
       dockerfile: Dockerfile
