@@ -12,7 +12,6 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
-    environment:
       EXTRAS: "fastembed,anthropic"
       TRANSPORT_MODE: "http"
       LOG_LEVEL: "INFO"
