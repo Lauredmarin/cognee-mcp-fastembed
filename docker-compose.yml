@@ -32,7 +32,6 @@ services:
     labels:
       caddy: cognee.maarin.dedyn.io
       caddy.reverse_proxy: "{{upstreams 8000}}"
-      caddy.reverse_proxy.header_up: "Host localhost:8000"
       caddy.reverse_proxy.flush_interval: "-1"
 
 volumes:
