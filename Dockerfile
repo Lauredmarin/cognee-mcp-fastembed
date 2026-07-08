@@ -1,4 +1,6 @@
 FROM cognee/cognee-mcp:main
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc libpq-dev python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 RUN pip install "cognee[postgres]"
-RUN mkdir -p /app/.venv/lib/python3.12/site-packages/cognee/.cognee_system/databases \
-    && chmod -R 777 /app/.venv/lib/python3.12/site-packages/cognee/.cognee_system
